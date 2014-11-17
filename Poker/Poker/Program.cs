@@ -10,9 +10,15 @@ namespace Poker
     {
         static void Main(string[] args)
         {
+            Deck myDeck = new Deck();
+            myDeck.Shuffle();
+            Console.WriteLine(myDeck.DealACard().ToString());
+            Console.WriteLine(myDeck.DealACard().ToString());
         }
     }
-
+    /// <summary>
+    /// A class that holds Cards and features a few helper methods
+    /// </summary>
     class Deck
     {
         private List<Card> unusedCards = new List<Card>();
@@ -37,7 +43,10 @@ namespace Poker
                 }
             }
         }
-
+        /// <summary>
+        /// Picks a random card then removes it from the unused list and adds it to the dealt list
+        /// </summary>
+        /// <returns>the random card to a player/hand</returns>
         public Card DealACard()
         {
             // Get a random card from the unused deck
@@ -51,6 +60,10 @@ namespace Poker
             // Return that card to the player/hand
             return tempCard;
         }
+
+        /// <summary>
+        /// Uses in list shuffling to reorder the existing cards
+        /// </summary>
         public void Shuffle()
         {
             // When there is more then 1 card to shuffle
@@ -80,7 +93,7 @@ namespace Poker
     }
     class Card
     {
-        private enum CardRank
+        public enum CardRank
         {
             Two = 2,
             Three,
@@ -96,7 +109,7 @@ namespace Poker
             King,
             Ace
         }
-        private enum CardSuit
+        public enum CardSuit
         {
             Spade,Diamond,Heart,Club
         }
@@ -116,7 +129,7 @@ namespace Poker
         /// Override the ToString()
         /// </summary>
         /// <returns>Card rank of it's suit</returns>
-        public string ToString()
+        override public string ToString()
         {
             return this.Rank +" of "+ this.Suit;
         }
